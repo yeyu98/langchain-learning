@@ -28,24 +28,30 @@ const tools = [addTool, multiplyTool];
 const llmWithTools = llm.bindTools(tools)
 
 const main = async() => {
-    const messages = [new HumanMessage("What is 3 * 12? Also, what is 11 + 49?")]
+    // 1.提问
+    const messages = [new HumanMessage("9.9 * 9.112的结果是什么？")]
+    // 2.llm决策需要调用 加工具和乘工具
     const aiMessage = await llmWithTools.invoke(messages)
-    // console.log(aiMessage)
+    console.log(aiMessage)
     messages.push(aiMessage)
 
-    const toolsByName = {
-        add: addTool,
-        multiply: multiplyTool
+    if(aiMessage.tool_calls?.length > 0) {
+        const toolsByName = {
+            add: addTool,
+            multiply: multiplyTool
+        }
+    
+        // 3.工具调用
+        for(const toolCall of aiMessage.tool_calls) {
+            const selectedTool = toolsByName[toolCall.name]
+            const toolMessage = await selectedTool.invoke(toolCall)
+            messages.push(toolMessage)
+            // console.log("messages", messages)
+        }
     }
-
-    for(const toolCall of aiMessage.tool_calls) {
-        const selectedTool = toolsByName[toolCall.name]
-        const toolMessage = await selectedTool.invoke(toolCall)
-        messages.push(toolMessage)
-        // console.log("messages", messages)
-    }
+    // 4.回答
     const response = await llmWithTools.invoke(messages)
-    console.log("response", response)
+    console.log("response", response.content)
 }
 
 main()

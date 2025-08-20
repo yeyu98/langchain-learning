@@ -46,10 +46,11 @@ const toolConfigure =  {
 // 4.创建工具
 const caculateTool = tool(caculateFunction, toolConfigure)
 
-// 5.llm使用工具
+// 5.绑定工具
 const llmWithTool = llm.bind({tools: [caculateTool]})
 
 const main = async () => {
+    // 决策是否使用工具
     const response = await llmWithTool.invoke("What is 3 * 12? Also, what is 11 + 49?")
     console.log("response.content", response.tool_calls)
 }

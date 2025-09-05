@@ -1,5 +1,6 @@
 import {ChatOpenAI} from '@langchain/openai'
 import * as dotenv from 'dotenv'
+import * as fs from 'fs'
 dotenv.config({path: '../.env'})
 
 export const llm = new ChatOpenAI({
@@ -8,3 +9,9 @@ export const llm = new ChatOpenAI({
         baseURL: 'https://api.siliconflow.cn/v1',
     }
 })
+
+export const getLastValue = (values) => values[values.length - 1]
+
+export const getJson = (str) => {
+    fs.writeFileSync('data.json', str)
+}

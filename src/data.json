@@ -1,0 +1,108 @@
+{
+  "messages": [
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": ["langchain_core", "messages", "HumanMessage"],
+      "kwargs": {
+        "content": "what is the current weather in sf",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "id": "2813ef5c-9c2b-4551-8adc-dad1f64c3fe5"
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": ["langchain_core", "messages", "AIMessage"],
+      "kwargs": {
+        "content": "",
+        "additional_kwargs": {
+          "tool_calls": [
+            {
+              "index": 0,
+              "id": "019918a926599ec995aac08e4d88bf48",
+              "type": "function",
+              "function": {
+                "name": "tavily_search",
+                "arguments": "{\"query\":\"current weather in San Francisco\",\"searchDepth\":\"basic\"}"
+              }
+            }
+          ]
+        },
+        "response_metadata": {
+          "tokenUsage": {
+            "promptTokens": 898,
+            "completionTokens": 15,
+            "totalTokens": 913
+          },
+          "finish_reason": "tool_calls",
+          "model_name": "deepseek-ai/DeepSeek-V3"
+        },
+        "id": "019918a92090083117bf0386cab0a31d",
+        "tool_calls": [
+          {
+            "name": "tavily_search",
+            "args": {
+              "query": "current weather in San Francisco",
+              "searchDepth": "basic"
+            },
+            "type": "tool_call",
+            "id": "019918a926599ec995aac08e4d88bf48"
+          }
+        ],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "output_tokens": 15,
+          "input_tokens": 898,
+          "total_tokens": 913,
+          "input_token_details": {},
+          "output_token_details": {}
+        }
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": ["langchain_core", "messages", "ToolMessage"],
+      "kwargs": {
+        "status": "success",
+        "content": "{\n  \"query\": \"current weather in San Francisco\",\n  \"follow_up_questions\": null,\n  \"answer\": null,\n  \"images\": [],\n  \"results\": [\n    {\n      \"title\": \"Weather in San Francisco\",\n      \"url\": \"https://www.weatherapi.com/\",\n      \"content\": \"{'location': {'name': 'San Francisco', 'region': 'California', 'country': 'United States of America', 'lat': 37.775, 'lon': -122.4183, 'tz_id': 'America/Los_Angeles', 'localtime_epoch': 1757055334, 'localtime': '2025-09-04 23:55'}, 'current': {'last_updated_epoch': 1757054700, 'last_updated': '2025-09-04 23:45', 'temp_c': 17.2, 'temp_f': 63.0, 'is_day': 0, 'condition': {'text': 'Overcast', 'icon': '//cdn.weatherapi.com/weather/64x64/night/122.png', 'code': 1009}, 'wind_mph': 8.3, 'wind_kph': 13.3, 'wind_degree': 268, 'wind_dir': 'W', 'pressure_mb': 1012.0, 'pressure_in': 29.89, 'precip_mm': 0.0, 'precip_in': 0.0, 'humidity': 84, 'cloud': 100, 'feelslike_c': 17.2, 'feelslike_f': 63.0, 'windchill_c': 14.8, 'windchill_f': 58.6, 'heatindex_c': 15.0, 'heatindex_f': 59.1, 'dewpoint_c': 14.5, 'dewpoint_f': 58.1, 'vis_km': 16.0, 'vis_miles': 9.0, 'uv': 0.0, 'gust_mph': 12.0, 'gust_kph': 19.4}}\",\n      \"score\": 0.7785264,\n      \"raw_content\": null\n    },\n    {\n      \"url\": \"https://www.weather25.com/north-america/usa/california/san-francisco?page=month&month=September\",\n      \"title\": \"San Francisco weather in September 2025 | Weather25.com\",\n      \"content\": \"The temperatures in San Francisco in September are comfortable with low of 57°F and and high up to 77°F. There is little to no rain in San Francisco during\",\n      \"score\": 0.7730283,\n      \"raw_content\": null\n    },\n    {\n      \"url\": \"https://world-weather.info/forecast/usa/san_francisco/may-2025/\",\n      \"title\": \"Weather in San Francisco in May 2025 (California)\",\n      \"content\": \"Average weather in May 2025: 1 days Precipitation, 6 days Cloudy, 24 days Sunny, Day +64 °F.\",\n      \"score\": 0.7636429,\n      \"raw_content\": null\n    }\n  ],\n  \"response_time\": 1.58,\n  \"request_id\": \"4333fbbe-fecd-4dfa-8262-9b81badca127\"\n}",
+        "tool_call_id": "019918a926599ec995aac08e4d88bf48",
+        "name": "tavily_search",
+        "metadata": {},
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "id": "ae6c9714-19c9-4ff3-9d0e-6fa4cad3918f"
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": ["langchain_core", "messages", "AIMessage"],
+      "kwargs": {
+        "content": "The current weather in San Francisco is as follows:\n\n- **Temperature**: 17.2°C (63.0°F)\n- **Condition**: Overcast\n- **Wind**: 8.3 mph (13.3 kph) from the West\n- **Humidity**: 84%\n- **Visibility**: 16.0 km (9.0 miles)\n- **Feels like**: 17.2°C (63.0°F)\n\nFor more details, you can check [WeatherAPI](https://www.weatherapi.com/).",
+        "additional_kwargs": {},
+        "response_metadata": {
+          "tokenUsage": {
+            "promptTokens": 1734,
+            "completionTokens": 117,
+            "totalTokens": 1851
+          },
+          "finish_reason": "stop",
+          "model_name": "deepseek-ai/DeepSeek-V3"
+        },
+        "id": "019918a937e16a195c3adf13578b0a0e",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+          "output_tokens": 117,
+          "input_tokens": 1734,
+          "total_tokens": 1851,
+          "input_token_details": {},
+          "output_token_details": {}
+        }
+      }
+    }
+  ]
+}
